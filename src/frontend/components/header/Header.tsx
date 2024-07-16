@@ -3,6 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import Row from "../common/Row";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const ContainerEl = styled(Row)`
   width: 100%;
@@ -14,7 +16,7 @@ const ContainerEl = styled(Row)`
 const HeaderCon = styled(Row)`
   min-width: 400px;
   width: 700px;
-  background-color: red;
+  font-weight: 300;
   justify-content: space-between;
   align-items: center;
 `;
@@ -53,7 +55,9 @@ function Header() {
         </LinkEl>
         <LinkEl>
           <Link href="#">
-            <LoginEl>Login Pic</LoginEl>
+            <LoginEl>
+              <FontAwesomeIcon icon={faUser} size="lg" />
+            </LoginEl>
           </Link>
         </LinkEl>
       </HeaderCon>
