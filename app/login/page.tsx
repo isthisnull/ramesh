@@ -1,7 +1,12 @@
 import React from "react";
+import Login from "@/src/frontend/components/login/Login";
 
 function page() {
-  return <div>page</div>;
+  return (
+    <>
+      <Login />
+    </>
+  );
 }
 
 export default page;

@@ -15,6 +15,7 @@ const ContainerEl = styled(Row)<{ hover?: string }>`
   height: auto;
   position: absolute;
   z-index: 1;
+  transition: ease-out 400ms all;
 `;
 const HeaderCon = styled(Row)`
   min-width: 400px;
@@ -31,29 +32,84 @@ const LinkEl = styled(Row)``;
 const RameshEl = styled(Row)`
   cursor: pointer;
 `;
-const HomeEl = styled(Row)`
-  cursor: pointer;
-`;
-const AboutEl = styled(Row)`
-  cursor: pointer;
-  background-color: blue;
-`;
-const LoginConEl = styled(Row)``;
+
 const LoginEl = styled(Row)<{ hover?: string }>`
   cursor: pointer;
 `;
-const LoginHoverEl = styled(Row)<{ hover?: string }>`
-  color: black;
-  width: 100%;
-  z-index: 1;
-  background-color: rgb(243, 52, 52);
-  height: ${(e) => (e.hover === "ok" ? "220px" : "0px")};
-  transition: ease-out 400ms all;
+const HomeEl = styled(Row)`
+  cursor: pointer;
 `;
-const HomeCon = styled(Row)`
+const HomeConEl = styled(Row)`
   z-index: 3;
   gap: 4px;
 `;
+const AboutEl = styled(Row)`
+  cursor: pointer;
+`;
+
+const LoginHoverEl = styled(Row)<{ hover?: string }>`
+  width: 220px;
+  right: -0100px;
+  top: -80px;
+  z-index: -1;
+  background-color: rgb(255, 255, 255);
+  height: 100px;
+  /*   border-radius: 10px;
+  border: 1px black solid; */
+  transition: ease-out 400ms all;
+  position: absolute;
+  overflow: hidden;
+  /* opacity: 0; */
+`;
+const LoginConEl = styled(Row)`
+  position: relative;
+  height: 40px;
+  align-items: center;
+  &:hover {
+    & > ${LoginHoverEl} {
+      transform: translateY(120px);
+      opacity: 1;
+    }
+  }
+`;
+const SignButsConEl = styled(Row)`
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  gap: 7px;
+`;
+const SignInButEl = styled(Row)`
+  background-color: purple;
+  width: 200px;
+  padding: 10px 15px;
+  justify-content: center;
+  border-radius: 19px;
+  &:hover {
+    background-color: white;
+    color: rebeccapurple;
+    border: 1px rebeccapurple solid;
+    box-shadow: 0px 0px 10px purple;
+  }
+`;
+const SignUpButEl = styled(Row)`
+  background-color: purple;
+  width: 200px;
+  padding: 10px 15px;
+  justify-content: center;
+  border-radius: 19px;
+  &:hover {
+    background-color: white;
+    color: rebeccapurple;
+    border: 1px rebeccapurple solid;
+    box-shadow: 0px 0px 10px purple;
+  }
+`;
+
 function Header() {
   const [hovered, sethovered] = useState("asas");
   return (
@@ -61,10 +117,10 @@ function Header() {
       <HeaderCon onMouseEnter={() => sethovered(`${hovered}`)}>
         <LinkEl>
           <Link href="#">
-            <HomeCon>
+            <HomeConEl>
               <RameshEl>Ramesh Logo</RameshEl>
               <HomeEl>Home</HomeEl>
-            </HomeCon>
+            </HomeConEl>
           </Link>
         </LinkEl>
         <LinkEl>
@@ -78,14 +134,27 @@ function Header() {
               <LoginEl onMouseEnter={() => sethovered("ok")} hover={hovered}>
                 <FontAwesomeIcon icon={faUser} size="lg" />
               </LoginEl>
+              <LoginHoverEl
+                onMouseLeave={() => sethovered("o2k")}
+                hover={hovered}
+              >
+                <SignButsConEl>
+                  <LinkEl>
+                    <Link href="/login">
+                      <SignInButEl>Login</SignInButEl>
+                    </Link>
+                  </LinkEl>
+                  <LinkEl>
+                    <Link href="#">
+                      <SignUpButEl>sign up</SignUpButEl>
+                    </Link>
+                  </LinkEl>
+                </SignButsConEl>
+              </LoginHoverEl>
             </LoginConEl>
           </Link>
         </LinkEl>
       </HeaderCon>
-      <LoginHoverEl
-        onMouseLeave={() => sethovered("o2k")}
-        hover={hovered}
-      ></LoginHoverEl>
     </ContainerEl>
   );
 }
