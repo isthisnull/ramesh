@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Row from "../common/Row";
 import Link from "next/link";
@@ -159,6 +159,9 @@ const SignUpSpan = styled(Row)`
 `;
 
 function Login() {
+  const UserRef = useRef<HTMLInputElement>(null);
+  const PassRef = useRef<HTMLInputElement>(null);
+  const [pass, setpass] = useState<string>("");
   const [only, setOnly] = useState(false);
   return (
     <PageContainerEl>
@@ -178,8 +181,9 @@ function Login() {
           <FormConEl>
             <UserLoginEl>USER LOGIN</UserLoginEl>
             <UserNameInputEl
+              ref={UserRef}
               readOnly={only}
-              onKeyDownCapture={(event) => {
+              onKeyDown={(event) => {
                 if ("Backspace" == event.key) {
                   setOnly(false);
                 } else if (
@@ -211,7 +215,13 @@ function Login() {
                 }
               }}
             ></UserNameInputEl>
-            <PasswordInputEl></PasswordInputEl>
+            <PasswordInputEl
+              value={pass}
+              onChange={(e) => {
+                setpass(e.currentTarget.value);
+              }}
+              ref={PassRef}
+            ></PasswordInputEl>
             <ForgetConEl>
               <RemConEl>
                 <RememberCheckEl></RememberCheckEl>
@@ -222,7 +232,17 @@ function Login() {
               </Link>
             </ForgetConEl>
             <LoginButConEl>
-              <LoginButEl>Login</LoginButEl>
+              <LoginButEl
+                onClick={() => {
+                  if (UserRef.current?.value === "kir" && pass === "123") {
+                    console.log("logged");
+                  }
+                  console.log(UserRef.current?.value);
+                  console.log({ pass });
+                }}
+              >
+                Login
+              </LoginButEl>
               <SignupButEl>
                 Need to
                 <SignUpSpan>

@@ -5,6 +5,9 @@ import Row from "../common/Row";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, UseDispatch } from "react-redux";
+import loginSlice from "../state/slices/loginSlice";
+import { login } from "../state/slices/loginSlice";
 
 const ContainerEl = styled(Row)<{ hover?: string }>`
   width: 100%;
@@ -111,7 +114,11 @@ const SignUpButEl = styled(Row)`
 `;
 
 function Header() {
-  const [hovered, sethovered] = useState("asas");
+  const mamad: boolean = false;
+  const [login1, setLogin1] = useState<boolean>(true);
+  const [hovered, sethovered] = useState<string>("asas");
+
+  /*  const onClickHandle = dispatch(login(mamad)); */
   return (
     <ContainerEl onMouseEnter={() => sethovered(`${hovered}`)}>
       <HeaderCon onMouseEnter={() => sethovered(`${hovered}`)}>
@@ -145,7 +152,7 @@ function Header() {
                     </Link>
                   </LinkEl>
                   <LinkEl>
-                    <Link href="#">
+                    <Link href="/signup">
                       <SignUpButEl>sign up</SignUpButEl>
                     </Link>
                   </LinkEl>
