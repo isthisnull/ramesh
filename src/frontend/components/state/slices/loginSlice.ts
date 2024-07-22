@@ -10,7 +10,10 @@ export const loginSlice = createSlice({
     logout: (state) => {
       state.count = false;
     },
+    increment: (state) => {
+      state.count = !state;
+    },
   },
 });
-export const { login, logout } = loginSlice.actions;
+export const { login, logout, increment } = loginSlice.actions;
 export default loginSlice.reducer;

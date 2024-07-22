@@ -150,14 +150,13 @@ const SignupButEl = styled(Row)`
   font-weight: 700;
   width: 100%;
   gap: 3px;
-  /*  background-color: black; */
 `;
 
 const SignUpSpan = styled(Row)`
   cursor: pointer;
   color: blue;
 `;
-
+const LinkEl = styled(Row)``;
 function Login() {
   const UserRef = useRef<HTMLInputElement>(null);
   const PassRef = useRef<HTMLInputElement>(null);
@@ -232,17 +231,15 @@ function Login() {
               </Link>
             </ForgetConEl>
             <LoginButConEl>
-              <LoginButEl
-                onClick={() => {
-                  if (UserRef.current?.value === "kir" && pass === "123") {
-                    console.log("logged");
-                  }
-                  console.log(UserRef.current?.value);
-                  console.log({ pass });
-                }}
+              <Link
+                href={
+                  UserRef.current?.value === "kir" && pass === "123"
+                    ? "/"
+                    : "login"
+                }
               >
-                Login
-              </LoginButEl>
+                <LoginButEl>Login</LoginButEl>
+              </Link>
               <SignupButEl>
                 Need to
                 <SignUpSpan>
