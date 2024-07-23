@@ -5,9 +5,10 @@ import Row from "../common/Row";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch, UseDispatch, useSelector } from "react-redux";
 import mainStore from "../state/mainStore";
-import { login } from "../state/slices/loginSlice";
+import { login, increment, logout } from "../state/slices/loginSlice";
+import { RootState } from "../state/mainStore";
 
 const ContainerEl = styled(Row)<{ hover?: string }>`
   width: 100%;
@@ -114,9 +115,9 @@ const SignUpButEl = styled(Row)`
 `;
 const But = styled.button``;
 function Header() {
-  const mamad: boolean = false;
-  const [login1, setLogin1] = useState<boolean>(true);
+  const [login1, setLogin1] = useState<string>("true");
   const [hovered, sethovered] = useState<string>("asas");
+  const mamad1 = useSelector((state: RootState) => state.loginSlice.count);
   const dispatch = useDispatch();
   /*  const onClickHandle = dispatch(login(mamad)); */
   return (
@@ -132,9 +133,18 @@ function Header() {
         </LinkEl>
         <LinkEl>
           <Link href="/about">
-            <AboutEl onMouseEnter={() => sethovered("o2k")}>About Us</AboutEl>
+            <AboutEl onMouseEnter={() => sethovered("o2k")}>
+              {mamad1}About Us
+            </AboutEl>
           </Link>
-          <But>sss</But>
+          <But
+            onClick={() => {
+              dispatch(increment());
+              console.log({ mamad1 });
+            }}
+          >
+            sss
+          </But>
         </LinkEl>
         <LinkEl>
           <Link href="#">
