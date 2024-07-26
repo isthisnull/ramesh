@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/mainStore";
-import { login, loged } from "../state/slices/loginSlice";
 import Image from "next/image";
 
 const ContainerEl = styled(Row)`
