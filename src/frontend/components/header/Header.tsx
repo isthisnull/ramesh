@@ -5,12 +5,12 @@ import Row from "../common/Row";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, UseDispatch, useSelector } from "react-redux";
-import mainStore from "../state/mainStore";
-import { login, increment, logout } from "../state/slices/loginSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/mainStore";
+import { login, loged } from "../state/slices/loginSlice";
+import Image from "next/image";
 
-const ContainerEl = styled(Row)<{ hover?: string }>`
+const ContainerEl = styled(Row)`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
@@ -36,8 +36,10 @@ const LinkEl = styled(Row)``;
 const RameshEl = styled(Row)`
   cursor: pointer;
 `;
-
-const LoginEl = styled(Row)<{ hover?: string }>`
+interface LoginElProps {
+  hover?: string;
+}
+const LoginEl = styled(Row)<LoginElProps>`
   cursor: pointer;
 `;
 const HomeEl = styled(Row)`
@@ -50,20 +52,18 @@ const HomeConEl = styled(Row)`
 const AboutEl = styled(Row)`
   cursor: pointer;
 `;
-
-const LoginHoverEl = styled(Row)<{ hover?: string }>`
+interface LoginHoverProps {
+  hover?: string;
+}
+const LoginHoverEl = styled(Row)<LoginHoverProps>`
   width: 220px;
-  right: -0100px;
+  right: -100px;
   top: -80px;
   z-index: -1;
-  background-color: rgb(255, 255, 255);
   height: 100px;
-  /*   border-radius: 10px;
-  border: 1px black solid; */
   transition: ease-out 400ms all;
   position: absolute;
   overflow: hidden;
-  /* opacity: 0; */
 `;
 const LoginConEl = styled(Row)`
   position: relative;
@@ -113,18 +113,38 @@ const SignUpButEl = styled(Row)`
     box-shadow: 0px 0px 10px purple;
   }
 `;
-const But = styled.button``;
+
+interface LoggeninProps {
+  logged?: string;
+}
+interface LoggedoutEl {
+  logged: string;
+}
+const LinkLoggedinEl = styled(Row)<LoggeninProps>`
+  display: ${(e) => (e.logged === "logedin" ? "none" : "flex")};
+`;
+
+const LinkLoggedoutEl = styled(Row)<LoggedoutEl>`
+  display: ${(e) => (e.logged === "logedout" ? "none" : "flex")};
+`;
+const ProfileNameEl = styled(Row)`
+  gap: 4px;
+  align-items: center;
+`;
+const ImageEl = styled(Row)`
+  margin-left: 30px;
+  cursor: pointer;
+`;
+const Username: string = "Kir";
 function Header() {
-  const [login1, setLogin1] = useState<string>("true");
-  const [hovered, sethovered] = useState<string>("asas");
-  const mamad1 = useSelector((state: RootState) => state.loginSlice.count);
-  const dispatch = useDispatch();
-  /*  const onClickHandle = dispatch(login(mamad)); */
+  const [hovered, sethovered] = useState<string>("");
+  const isLogged = useSelector((state: RootState) => state.loginSlice.count);
+
   return (
     <ContainerEl onMouseEnter={() => sethovered(`${hovered}`)}>
       <HeaderCon onMouseEnter={() => sethovered(`${hovered}`)}>
         <LinkEl>
-          <Link href="#">
+          <Link href="/">
             <HomeConEl>
               <RameshEl>Ramesh Logo</RameshEl>
               <HomeEl>Home</HomeEl>
@@ -133,45 +153,47 @@ function Header() {
         </LinkEl>
         <LinkEl>
           <Link href="/about">
-            <AboutEl onMouseEnter={() => sethovered("o2k")}>
-              {mamad1}About Us
-            </AboutEl>
-          </Link>
-          <But
-            onClick={() => {
-              dispatch(increment());
-              console.log({ mamad1 });
-            }}
-          >
-            sss
-          </But>
-        </LinkEl>
-        <LinkEl>
-          <Link href="#">
-            <LoginConEl>
-              <LoginEl onMouseEnter={() => sethovered("ok")} hover={hovered}>
-                <FontAwesomeIcon icon={faUser} size="lg" />
-              </LoginEl>
-              <LoginHoverEl
-                onMouseLeave={() => sethovered("o2k")}
-                hover={hovered}
-              >
-                <SignButsConEl>
-                  <LinkEl>
-                    <Link href="/login">
-                      <SignInButEl>Login</SignInButEl>
-                    </Link>
-                  </LinkEl>
-                  <LinkEl>
-                    <Link href="/signup">
-                      <SignUpButEl>sign up</SignUpButEl>
-                    </Link>
-                  </LinkEl>
-                </SignButsConEl>
-              </LoginHoverEl>
-            </LoginConEl>
+            <AboutEl onMouseEnter={() => sethovered("o2k")}>About Us</AboutEl>
           </Link>
         </LinkEl>
+        <LinkLoggedinEl logged={isLogged}>
+          <LoginConEl>
+            <LoginEl onMouseEnter={() => sethovered("ok")} hover={hovered}>
+              <FontAwesomeIcon icon={faUser} size="lg" />
+            </LoginEl>
+            <LoginHoverEl
+              onMouseLeave={() => sethovered("o2k")}
+              hover={hovered}
+            >
+              <SignButsConEl>
+                <LinkEl>
+                  <Link href="/login">
+                    <SignInButEl>Login</SignInButEl>
+                  </Link>
+                </LinkEl>
+                <LinkEl>
+                  <Link href="/signup">
+                    <SignUpButEl>sign up</SignUpButEl>
+                  </Link>
+                </LinkEl>
+              </SignButsConEl>
+            </LoginHoverEl>
+          </LoginConEl>
+        </LinkLoggedinEl>
+        <LinkLoggedoutEl logged={isLogged}>
+          <ProfileNameEl>Hi, {Username}</ProfileNameEl>
+          <Link href="/profile">
+            <ImageEl>
+              <Image
+                src="/assets/account-avatar-profile.svg"
+                width={25}
+                height={25}
+                alt="kir"
+                style={{ contain: "object-fit" }}
+              ></Image>
+            </ImageEl>
+          </Link>
+        </LinkLoggedoutEl>
       </HeaderCon>
     </ContainerEl>
   );

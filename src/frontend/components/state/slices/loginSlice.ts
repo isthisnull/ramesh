@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { count: false };
+const initialState = { count: "logedout" };
 export const loginSlice = createSlice({
   name: "loginSlice",
   initialState,
   reducers: {
     login: (state) => {
-      state.count = false;
+      state.count = "logedin";
     },
     logout: (state) => {
-      state.count = true;
+      state.count = "logedout";
     },
-    increment: (state) => {
-      state.count = !state.count;
+    loged: (state) => {
+      console.log(state.count);
     },
   },
 });
-export const { login, logout, increment } = loginSlice.actions;
+export const { login, logout, loged } = loginSlice.actions;
 export default loginSlice.reducer;

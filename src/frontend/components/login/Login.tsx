@@ -3,6 +3,9 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Row from "../common/Row";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import loginSlice, { login } from "../state/slices/loginSlice";
+import { RootState } from "../state/mainStore";
 
 const PageContainerEl = styled(Row)`
   background: rgb(99, 82, 236);
@@ -156,12 +159,14 @@ const SignUpSpan = styled(Row)`
   cursor: pointer;
   color: blue;
 `;
-const LinkEl = styled(Row)``;
+
 function Login() {
   const UserRef = useRef<HTMLInputElement>(null);
   const PassRef = useRef<HTMLInputElement>(null);
   const [pass, setpass] = useState<string>("");
   const [only, setOnly] = useState(false);
+  const dispatch = useDispatch();
+
   return (
     <PageContainerEl>
       <FormContainer>
@@ -238,7 +243,19 @@ function Login() {
                     : "login"
                 }
               >
-                <LoginButEl>Login</LoginButEl>
+                <LoginButEl
+                  onClick={
+                    UserRef.current?.value === "kir" && pass === "123"
+                      ? () => {
+                          dispatch(login());
+                        }
+                      : () => {
+                          window.alert("err");
+                        }
+                  }
+                >
+                  Login
+                </LoginButEl>
               </Link>
               <SignupButEl>
                 Need to
