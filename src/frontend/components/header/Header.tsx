@@ -117,7 +117,7 @@ interface LoggeninProps {
   logged?: string;
 }
 interface LoggedoutEl {
-  logged: string;
+  logged?: string;
 }
 const LinkLoggedinEl = styled(Row)<LoggeninProps>`
   display: ${(e) => (e.logged === "logedin" ? "none" : "flex")};

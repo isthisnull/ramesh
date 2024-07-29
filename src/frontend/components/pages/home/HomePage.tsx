@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Row from "../../common/Row";
 import Image from "next/image";
@@ -106,17 +106,53 @@ const LaptopPicEl = styled(Row)``;
 
 const SignConEl = styled(Row)`
   width: 100%;
-  background-color: red;
+  background-color: #ffffff;
+  justify-content: space-around;
 `;
 const SignPicEl = styled(Row)``;
 const SignTextButEl = styled(Row)`
-  width: 100%;
+  width: 300px;
+  justify-content: center;
   flex-direction: column;
-`;
-const SignTextEl = styled(Row)``;
-const SignUpButEl = styled.button``;
-const SignInButEl = styled.button``;
 
+  background-color: #c9c9c9;
+`;
+const SignTextEl = styled(Row)`
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+const LinkEl = styled(Row)`
+  justify-content: center;
+`;
+const randomHexColorCode = () => {
+  let n = (Math.random() * 0xfffff * 1000000).toString(16);
+  return "#" + n.slice(0, 6);
+};
+const RandomColor = randomHexColorCode();
+const SignUpButEl = styled.button<{ color?: string }>`
+  min-height: 100px;
+  width: 100px;
+  border: 1px solid white;
+  padding: 10px 10px;
+  border-radius: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  background-color: white;
+  &:hover {
+    border: 1px solid;
+    border-color: ${(e) => e.color};
+    color: ${(e) => e.color};
+  }
+`;
+const SignInButEl = styled.button`
+  width: 100px;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+`;
+/* useEffect(() => {}, []); */
 function HomePage() {
   return (
     <PageContainer>
@@ -130,7 +166,7 @@ function HomePage() {
               style={{ objectFit: "contain" }}
               alt="Dollar"
             ></Image>
-            <DollarTextEl>kvabfdlsihabdsfi</DollarTextEl>
+            <DollarTextEl>کصشعر نوشته شود</DollarTextEl>
           </ImageEl>
         </DollarConEl>
         <MoneyBagConEl>
@@ -143,7 +179,7 @@ function HomePage() {
               alt="Dollar"
             ></Image>
           </MoneyBagPicEl>
-          <MoneyBagTextEl>sadasf</MoneyBagTextEl>
+          <MoneyBagTextEl>کصشعر نوشته شود</MoneyBagTextEl>
         </MoneyBagConEl>
         <CheckAndCoinConEl>
           <CheckConEl>
@@ -155,7 +191,7 @@ function HomePage() {
                 style={{ objectFit: "contain" }}
                 alt="Dollar"
               ></Image>
-              <ChecksTextEl>check</ChecksTextEl>
+              <ChecksTextEl>کصشعر نوشته شود</ChecksTextEl>
             </ChecksPicEl>
           </CheckConEl>
           <CoinsConEl>
@@ -167,12 +203,13 @@ function HomePage() {
                 style={{ objectFit: "contain" }}
                 alt="Dollar"
               ></Image>
-              <CoinsTextEl>Coin</CoinsTextEl>
+              <CoinsTextEl>کصشعر نوشته شود</CoinsTextEl>
             </CoinsPicEl>
           </CoinsConEl>
         </CheckAndCoinConEl>
         <CalculatorandcheckConEl>
           <LaptopConEl>
+            <LaptopTextEl>کصشعر نوشته شود</LaptopTextEl>
             <LaptopPicEl>
               <Image
                 src="/assets/homepics/413913-PDRNW7-891.jpg"
@@ -182,7 +219,6 @@ function HomePage() {
                 alt="Dollar"
               ></Image>
             </LaptopPicEl>
-            <LaptopTextEl>laptop</LaptopTextEl>
           </LaptopConEl>
         </CalculatorandcheckConEl>
         <SignConEl>
@@ -196,9 +232,24 @@ function HomePage() {
             ></Image>
           </SignPicEl>
           <SignTextButEl>
-            <SignTextEl>33</SignTextEl>
-            <SignUpButEl>2</SignUpButEl>
-            <SignInButEl>1</SignInButEl>
+            <SignTextEl>کصشعر نوشته شود</SignTextEl>
+            <LinkEl>
+              <Link href="/login">
+                <SignInButEl>Login</SignInButEl>
+              </Link>
+            </LinkEl>
+            <LinkEl>
+              {/*               <Link href="signup"> */}
+              <SignUpButEl
+                color={RandomColor}
+                onClick={() => {
+                  console.log(randomHexColorCode());
+                }}
+              >
+                Sign Up
+              </SignUpButEl>
+              {/*           </Link> */}
+            </LinkEl>
           </SignTextButEl>
         </SignConEl>
       </ContainerEl>
