@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Row from "../../common/Row";
 import Image from "next/image";
@@ -23,18 +23,22 @@ const DollarConEl = styled(Row)`
   width: 100%;
 `;
 const ImageEl = styled(Row)`
-  background-color: #96aeff;
+  flex-direction: column-reverse;
+  background-color: #ef5749;
   width: 100%;
   height: 600px;
   align-items: center;
   justify-content: center;
   position: relative;
+  gap: 20px;
 `;
 
 const DollarTextEl = styled(Row)`
-  position: absolute;
-  left: 30%;
-  top: 80px;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #ffffff;
 `;
 
 const MoneyBagConEl = styled(Row)`
@@ -42,18 +46,20 @@ const MoneyBagConEl = styled(Row)`
   width: 100%;
   height: 300px;
   background-color: #ffffff;
-  justify-content: center;
+  justify-content: space-around;
   position: relative;
 `;
 
 const MoneyBagPicEl = styled(Row)``;
 const MoneyBagTextEl = styled(Row)`
-  position: absolute;
-  left: 30px;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #ef5749;
 `;
 
 const CheckConEl = styled(Row)`
-  /* margin-bottom: 400px; */
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -61,12 +67,19 @@ const CheckConEl = styled(Row)`
   background-color: #f4f4f4;
   position: relative;
 `;
-const ChecksPicEl = styled(Row)``;
+const ChecksPicEl = styled(Row)`
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+`;
 const ChecksTextEl = styled(Row)`
-  position: absolute;
-  color: red;
-  left: 50px;
-  top: 30%;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 2rem;
+  padding-top: 60px;
+
+  color: #ef5749;
 `;
 const CheckAndCoinConEl = styled(Row)`
   width: 100%;
@@ -75,18 +88,27 @@ const CheckAndCoinConEl = styled(Row)`
   gap: 5px;
 `;
 const CoinsConEl = styled(Row)`
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
 `;
 const CoinsPicEl = styled(Row)`
+  flex-direction: column;
+  padding-bottom: 60px;
   width: 100%;
   justify-content: center;
   align-items: center;
   height: 500px;
 `;
-const CoinsTextEl = styled(Row)``;
+const CoinsTextEl = styled(Row)`
+  justify-content: center;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 50px;
+  color: #ef5749;
+`;
 const CalculatorandcheckConEl = styled(Row)`
   width: 100%;
   justify-content: center;
@@ -100,7 +122,12 @@ const LaptopConEl = styled(Row)`
   background-color: #ef5749;
 `;
 const LaptopTextEl = styled(Row)`
-  background-color: beige;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 50px;
+  color: #ffffff;
 `;
 const LaptopPicEl = styled(Row)``;
 
@@ -114,46 +141,71 @@ const SignTextButEl = styled(Row)`
   width: 300px;
   justify-content: center;
   flex-direction: column;
-
-  background-color: #c9c9c9;
 `;
 const SignTextEl = styled(Row)`
   justify-content: center;
-  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 50px;
+  color: #ef5749;
 `;
 const LinkEl = styled(Row)`
+  width: 100%;
   justify-content: center;
 `;
-const randomHexColorCode = () => {
-  let n = (Math.random() * 0xfffff * 1000000).toString(16);
-  return "#" + n.slice(0, 6);
-};
-const RandomColor = randomHexColorCode();
+
 const SignUpButEl = styled.button<{ color?: string }>`
-  min-height: 100px;
-  width: 100px;
+  width: 100%;
   border: 1px solid white;
-  padding: 10px 10px;
+  padding: 10px 50px;
   border-radius: 30px;
   font-weight: 600;
   margin-bottom: 20px;
-  background-color: white;
+  background-color: #e7e7e7;
   &:hover {
     border: 1px solid;
+    background-color: #ffffff;
     border-color: ${(e) => e.color};
     color: ${(e) => e.color};
   }
 `;
-const SignInButEl = styled.button`
-  width: 100px;
+const SignInButEl = styled.button<{ color?: string }>`
+  width: 100%;
+  padding: 10px 50px;
   border: none;
-  padding: 10px 10px;
   border-radius: 30px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 20px;
+  background-color: #e7e7e7;
+  border: 1px solid white;
+  &:hover {
+    border: 1px solid;
+    background-color: #ffffff;
+    border-color: ${(e) => e.color};
+    color: ${(e) => e.color};
+  }
 `;
-/* useEffect(() => {}, []); */
+const LaptopTextConEl = styled(Row)`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 function HomePage() {
+  const randomHexColorCode = () => {
+    let n = (Math.random() * 0xfffff * 1000000).toString(16);
+    return "#" + n.slice(0, 6);
+  };
+  const [rndColor, setRndColor] = useState<string>("");
+
+  useEffect(() => {
+    setInterval(() => {
+      if (typeof window !== "undefined") {
+        randomHexColorCode();
+        setRndColor(randomHexColorCode());
+      }
+    }, 1000);
+  }, []);
+
   return (
     <PageContainer>
       <ContainerEl>
@@ -166,20 +218,22 @@ function HomePage() {
               style={{ objectFit: "contain" }}
               alt="Dollar"
             ></Image>
-            <DollarTextEl>کصشعر نوشته شود</DollarTextEl>
+            <DollarTextEl>نرم افزار حسابداری رامش</DollarTextEl>
           </ImageEl>
         </DollarConEl>
         <MoneyBagConEl>
           <MoneyBagPicEl>
             <Image
               src="/assets/homepics/moneybag.jpg"
-              width={900}
+              width={400}
               height={300}
               style={{ objectFit: "contain" }}
               alt="Dollar"
             ></Image>
           </MoneyBagPicEl>
-          <MoneyBagTextEl>کصشعر نوشته شود</MoneyBagTextEl>
+          <MoneyBagTextEl>
+            با نرم افزار حسابداری رامش یاد میگیری حساب کتاب کنی
+          </MoneyBagTextEl>
         </MoneyBagConEl>
         <CheckAndCoinConEl>
           <CheckConEl>
@@ -191,7 +245,7 @@ function HomePage() {
                 style={{ objectFit: "contain" }}
                 alt="Dollar"
               ></Image>
-              <ChecksTextEl>کصشعر نوشته شود</ChecksTextEl>
+              <ChecksTextEl>موعد چک هاتو اینجا بنویس</ChecksTextEl>
             </ChecksPicEl>
           </CheckConEl>
           <CoinsConEl>
@@ -203,13 +257,18 @@ function HomePage() {
                 style={{ objectFit: "contain" }}
                 alt="Dollar"
               ></Image>
-              <CoinsTextEl>کصشعر نوشته شود</CoinsTextEl>
+              <CoinsTextEl>یاد بگیر پس انداز کنی</CoinsTextEl>
             </CoinsPicEl>
           </CoinsConEl>
         </CheckAndCoinConEl>
         <CalculatorandcheckConEl>
           <LaptopConEl>
-            <LaptopTextEl>کصشعر نوشته شود</LaptopTextEl>
+            <LaptopTextConEl>
+              <LaptopTextEl>چه قدر خرج کردم؟ </LaptopTextEl>
+              <LaptopTextEl> کجا خرج کردم؟</LaptopTextEl>
+              <LaptopTextEl> چرا خرج کردم؟</LaptopTextEl>
+            </LaptopTextConEl>
+
             <LaptopPicEl>
               <Image
                 src="/assets/homepics/413913-PDRNW7-891.jpg"
@@ -232,24 +291,17 @@ function HomePage() {
             ></Image>
           </SignPicEl>
           <SignTextButEl>
-            <SignTextEl>کصشعر نوشته شود</SignTextEl>
-            <LinkEl>
-              <Link href="/login">
-                <SignInButEl>Login</SignInButEl>
-              </Link>
-            </LinkEl>
-            <LinkEl>
-              {/*               <Link href="signup"> */}
-              <SignUpButEl
-                color={RandomColor}
-                onClick={() => {
-                  console.log(randomHexColorCode());
-                }}
-              >
-                Sign Up
-              </SignUpButEl>
-              {/*           </Link> */}
-            </LinkEl>
+            <SignTextEl>همین الان به ما ملحق شوید</SignTextEl>
+            <Link href="/login">
+              <LinkEl>
+                <SignInButEl color={rndColor}>Login</SignInButEl>
+              </LinkEl>
+            </Link>
+            <Link href="signup">
+              <LinkEl>
+                <SignUpButEl color={rndColor}>Sign Up</SignUpButEl>
+              </LinkEl>
+            </Link>
           </SignTextButEl>
         </SignConEl>
       </ContainerEl>

@@ -29,7 +29,7 @@ const HeaderCon = styled(Row)`
   justify-content: space-evenly;
   align-items: center;
   height: 36px;
-  background-color: purple;
+  background-color: #000000;
 `;
 const LinkEl = styled(Row)``;
 const RameshEl = styled(Row)`
