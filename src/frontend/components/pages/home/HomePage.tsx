@@ -191,6 +191,7 @@ const LaptopTextConEl = styled(Row)`
   align-items: center;
   justify-content: center;
 `;
+const TestButEl = styled.button``;
 function HomePage() {
   const randomHexColorCode = () => {
     let n = (Math.random() * 0xfffff * 1000000).toString(16);
@@ -298,9 +299,14 @@ function HomePage() {
                 <SignInButEl color={rndColor}>ورود</SignInButEl>
               </LinkEl>
             </Link>
-            <Link href="signup">
+            <Link href="/signup">
               <LinkEl>
                 <SignUpButEl color={rndColor}>عضویت</SignUpButEl>
+              </LinkEl>
+            </Link>
+            <Link href="/expenses">
+              <LinkEl>
+                <SignUpButEl color={rndColor}>Test</SignUpButEl>
               </LinkEl>
             </Link>
           </SignTextButEl>
