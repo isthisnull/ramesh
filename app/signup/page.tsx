@@ -146,6 +146,7 @@ const ForgetPassEl = styled(Row)`
   cursor: pointer;
 `;
 const LoginButConEl = styled(Row)`
+  direction: rtl;
   justify-content: center;
   width: 240px;
   flex-direction: column;
@@ -188,18 +189,15 @@ function Login() {
       <FormContainer>
         <WelcomeConEl>
           <WelcomeTextsConEl>
-            <TitleEl>Welcome to website</TitleEl>
+            <TitleEl>به رامش خوش آمدید</TitleEl>
             <WelcomeTextEl>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              رامش از شما بابت ثبت نام قدر دانی میکند
             </WelcomeTextEl>
           </WelcomeTextsConEl>
         </WelcomeConEl>
         <LoginConEl>
           <FormConEl>
-            <UserLoginEl>Sign UP</UserLoginEl>
+            <UserLoginEl>عضویت کاربر</UserLoginEl>
             <UserNameInputEl
               readOnly={only}
               onKeyDown={(event) => {
@@ -237,11 +235,11 @@ function Login() {
             <PasswordInputEl></PasswordInputEl>
             <PhoneNumberInputEl></PhoneNumberInputEl>
             <LoginButConEl>
-              <LoginButEl>Sign UP</LoginButEl>
+              <LoginButEl>عضویت</LoginButEl>
               <SignupButEl>
-                Already have account?
+                قبلا ثبت نام کرده اید؟
                 <SignUpSpan>
-                  <Link href="/login">Sign in</Link>
+                  <Link href="/login">همین الان وارد شو</Link>
                 </SignUpSpan>
               </SignupButEl>
             </LoginButConEl>

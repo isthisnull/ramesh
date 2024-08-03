@@ -148,6 +148,7 @@ const LoginButEl = styled.button`
   color: white;
 `;
 const SignupButEl = styled(Row)`
+  direction: rtl;
   justify-content: center;
   font-size: 0.7rem;
   font-weight: 700;
@@ -172,18 +173,13 @@ function Login() {
       <FormContainer>
         <WelcomeConEl>
           <WelcomeTextsConEl>
-            <TitleEl>Welcome to website</TitleEl>
-            <WelcomeTextEl>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </WelcomeTextEl>
+            <TitleEl>به رامش خوش آمدید</TitleEl>
+            <WelcomeTextEl>لحظات خوشی را برای شما آرزومندیم</WelcomeTextEl>
           </WelcomeTextsConEl>
         </WelcomeConEl>
         <LoginConEl>
           <FormConEl>
-            <UserLoginEl>USER LOGIN</UserLoginEl>
+            <UserLoginEl>ورود کاربر</UserLoginEl>
             <UserNameInputEl
               ref={UserRef}
               readOnly={only}
@@ -229,10 +225,10 @@ function Login() {
             <ForgetConEl>
               <RemConEl>
                 <RememberCheckEl></RememberCheckEl>
-                <RememberTextEl>Remember</RememberTextEl>
+                <RememberTextEl>مرا به یاد داشته باش</RememberTextEl>
               </RemConEl>
               <Link href="/forgetpass">
-                <ForgetPassEl>Forget Password?</ForgetPassEl>
+                <ForgetPassEl>پسورد یادم رفته</ForgetPassEl>
               </Link>
             </ForgetConEl>
             <LoginButConEl>
@@ -254,13 +250,13 @@ function Login() {
                         }
                   }
                 >
-                  Login
+                  ورود
                 </LoginButEl>
               </Link>
               <SignupButEl>
-                Need to
+                نیاز دارید به
                 <SignUpSpan>
-                  <Link href="/signup">sign up?</Link>
+                  <Link href="/signup">ثبت نام؟</Link>
                 </SignUpSpan>
               </SignupButEl>
             </LoginButConEl>

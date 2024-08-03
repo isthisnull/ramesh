@@ -87,29 +87,29 @@ const SignButsConEl = styled(Row)`
   gap: 7px;
 `;
 const SignInButEl = styled(Row)`
-  background-color: purple;
+  background-color: black;
   width: 200px;
   padding: 10px 15px;
   justify-content: center;
   border-radius: 19px;
   &:hover {
     background-color: white;
-    color: rebeccapurple;
-    border: 1px rebeccapurple solid;
-    box-shadow: 0px 0px 10px purple;
+    color: black;
+    border: 1px black solid;
+    box-shadow: 0px 0px 10px black;
   }
 `;
 const SignUpButEl = styled(Row)`
-  background-color: purple;
+  background-color: black;
   width: 200px;
   padding: 10px 15px;
   justify-content: center;
   border-radius: 19px;
   &:hover {
     background-color: white;
-    color: rebeccapurple;
-    border: 1px rebeccapurple solid;
-    box-shadow: 0px 0px 10px purple;
+    color: black;
+    border: 1px black solid;
+    box-shadow: 0px 0px 10px black;
   }
 `;
 
@@ -145,14 +145,14 @@ function Header() {
         <LinkEl>
           <Link href="/">
             <HomeConEl>
-              <RameshEl>Ramesh Logo</RameshEl>
-              <HomeEl>Home</HomeEl>
+              <RameshEl>لوگو رامش</RameshEl>
+              <HomeEl>خانه</HomeEl>
             </HomeConEl>
           </Link>
         </LinkEl>
         <LinkEl>
           <Link href="/about">
-            <AboutEl onMouseEnter={() => sethovered("o2k")}>About Us</AboutEl>
+            <AboutEl onMouseEnter={() => sethovered("o2k")}>درباره ما</AboutEl>
           </Link>
         </LinkEl>
         <LinkLoggedinEl logged={isLogged}>
@@ -167,12 +167,12 @@ function Header() {
               <SignButsConEl>
                 <LinkEl>
                   <Link href="/login">
-                    <SignInButEl>Login</SignInButEl>
+                    <SignInButEl>ورود</SignInButEl>
                   </Link>
                 </LinkEl>
                 <LinkEl>
                   <Link href="/signup">
-                    <SignUpButEl>sign up</SignUpButEl>
+                    <SignUpButEl>عضویت</SignUpButEl>
                   </Link>
                 </LinkEl>
               </SignButsConEl>
@@ -180,7 +180,7 @@ function Header() {
           </LoginConEl>
         </LinkLoggedinEl>
         <LinkLoggedoutEl logged={isLogged}>
-          <ProfileNameEl>Hi, {Username}</ProfileNameEl>
+          <ProfileNameEl>سلام, {Username}</ProfileNameEl>
           <Link href="/profile">
             <ImageEl>
               <Image

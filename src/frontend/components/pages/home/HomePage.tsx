@@ -78,7 +78,6 @@ const ChecksTextEl = styled(Row)`
   font-weight: 600;
   font-size: 2rem;
   padding-top: 60px;
-
   color: #ef5749;
 `;
 const CheckAndCoinConEl = styled(Row)`
@@ -159,7 +158,8 @@ const SignUpButEl = styled.button<{ color?: string }>`
   border: 1px solid white;
   padding: 10px 50px;
   border-radius: 30px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: large;
   margin-bottom: 20px;
   background-color: #e7e7e7;
   &:hover {
@@ -174,8 +174,9 @@ const SignInButEl = styled.button<{ color?: string }>`
   padding: 10px 50px;
   border: none;
   border-radius: 30px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 20px;
+  font-size: large;
   background-color: #e7e7e7;
   border: 1px solid white;
   &:hover {
@@ -294,12 +295,12 @@ function HomePage() {
             <SignTextEl>همین الان به ما ملحق شوید</SignTextEl>
             <Link href="/login">
               <LinkEl>
-                <SignInButEl color={rndColor}>Login</SignInButEl>
+                <SignInButEl color={rndColor}>ورود</SignInButEl>
               </LinkEl>
             </Link>
             <Link href="signup">
               <LinkEl>
-                <SignUpButEl color={rndColor}>Sign Up</SignUpButEl>
+                <SignUpButEl color={rndColor}>عضویت</SignUpButEl>
               </LinkEl>
             </Link>
           </SignTextButEl>
